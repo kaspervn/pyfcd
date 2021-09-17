@@ -60,7 +60,7 @@ def generate_height_field_smiley(size):
 
 
 if __name__ == "__main__":
-    argparser = argparse.ArgumentParser()
+    argparser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     argparser.add_argument('pattern', choices=['ripples', 'smiley'], default='ripples')
     argparser.add_argument('--size_x', type=int, default=256)
     argparser.add_argument('--size_y', type=int, default=256)
