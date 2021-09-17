@@ -1,7 +1,7 @@
 # Fast Checkboard Demodulation #
 Fast Checkerboard Demodulation (FCD) for Synthetic Schlieren imaging, in python
 
-Completely based the work from Sander Wildeman: https://github.com/swildeman/fcd
+Completely based on the work from Sander Wildeman: https://github.com/swildeman/fcd
 
 ## Usage ##
 To apply the FCD to a single or series of images, run `fcd.py` as a program:
