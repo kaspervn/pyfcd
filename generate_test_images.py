@@ -85,8 +85,6 @@ if __name__ == "__main__":
 
     reference_checkerboard = generate_checkerboard_from_mesh(x, y, pattern_interval)
 
-
     imageio.imwrite('test image reference.tiff', (reference_checkerboard * 255).astype(np.uint8))
     imageio.imwrite('test image displaced.tiff', (displaced_checkerboard * 255).astype(np.uint8))
-
     imageio.imwrite('test image height field.tiff', (normalize_image(height_field) * 255).astype(np.uint8))
