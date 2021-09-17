@@ -331,3 +331,4 @@ cython_debug/
 
 ### Misc stuff ###
 /nogit
+!readme_images/fcd_diagram.svg
