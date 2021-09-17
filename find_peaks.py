@@ -49,7 +49,3 @@ def find_peaks(img):
     perpendicular_peak = min(peak_locations, key=lambda p: abs(np.dot(pixel2kspace(i_fft.shape, p), pixel2kspace(i_fft.shape, rightmost_peak))))
 
     return rightmost_peak, perpendicular_peak
-
-if __name__ == '__main__':
-    i = imageio.imread("example_images/example_ref.tiff") / 255.0
-    print(find_peaks(i))
