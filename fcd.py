@@ -2,11 +2,12 @@ import time
 from dataclasses import dataclass
 from typing import List
 
-import imageio
+import imageio.v2 as imageio
 import numpy as np
 from numpy import array
 from scipy.fft import fft2, ifft2, ifftshift
 from skimage.draw import disk
+from skimage.io import imread
 from more_itertools import flatten
 
 from fft_inverse_gradient import fftinvgrad
@@ -17,7 +18,7 @@ def normalize_image(img):
     return (img - img.min()) / (img.max()-img.min())
 
 def peak_mask(shape, pos, r):
-    result = np.zeros(shape, dtype=np.bool8)
+    result = np.zeros(shape, dtype=bool)
     result[disk(pos, r, shape=shape)] = True
     return result
 
@@ -73,7 +74,8 @@ if __name__ == "__main__":
 
     args.output_folder.mkdir(exist_ok=True)
 
-    i_ref = imageio.imread(args.reference_image) / 255.0
+    i_ref = imread(args.reference_image, as_gray=True)
+    print(max(i_ref[0]), min(i_ref[0]))
 
     print(f'processing reference image...', end='')
     carriers = calculate_carriers(i_ref)
@@ -88,7 +90,7 @@ if __name__ == "__main__":
             continue
 
         print(f'processing {file} -> {output_file_path} ... ', end='')
-        i_def = imageio.imread(file) / 255.0
+        i_def = imread(file, as_gray=True)
         t0 = time.time()
         height_field = fcd(i_def, carriers)
         print(f'done in {time.time() - t0:.2}s\n')
