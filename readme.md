@@ -47,8 +47,8 @@ Python >= 3.7  and the following PIP packages:
 * numpy
 * scipy
 * imageio
-* skimage
 * more_itertools
+* scikit-image
 
 ## TODO ##
 * Improve the performance. The current implementation is not very fast
