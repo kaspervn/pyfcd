@@ -1,6 +1,7 @@
 import time
 from dataclasses import dataclass
 from typing import List
+import os.path
 
 import imageio.v2 as imageio
 import numpy as np
@@ -13,6 +14,7 @@ from more_itertools import flatten
 from fft_inverse_gradient import fftinvgrad
 from find_peaks import find_peaks
 from kspace import pixel2kspace
+
 
 def normalize_image(img):
     return (img - img.min()) / (img.max()-img.min())
@@ -85,6 +87,10 @@ if __name__ == "__main__":
 
     for file in files:
         output_file_path = args.output_folder.joinpath(f'{Path(file).stem}.{args.output_format}')
+
+        if os.path.abspath(file).lower() == os.path.abspath(output_file_path).lower():
+            print(f'Warning: Skipping converting {file} because it would overwrite a input file')
+            continue
 
         if args.skip_existing and output_file_path.exists():
             continue
